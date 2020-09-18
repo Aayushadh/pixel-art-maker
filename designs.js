@@ -1,9 +1,11 @@
 
 
 // Grid generating part
-var submit = document.querySelector('#submitForm');
+var form = document.querySelector('form');
 
-submit.addEventListener('click', function() {
+form.addEventListener('submit', function(event) {
+
+    event.preventDefault()
 
     var height, width;
     height = document.querySelector('#inputHeight');
@@ -12,7 +14,9 @@ submit.addEventListener('click', function() {
     console.log(width.value);
 
     var table = document.querySelector('table');
+    
     removeAllChildNodes(table);
+
     for (let i = 0; i < height.value; i++) {
         let row = document.createElement('tr');
         for (let j = 0; j < width.value; j++) {
@@ -22,17 +26,15 @@ submit.addEventListener('click', function() {
         table.appendChild(row);
 
     }
-
-
-
 });
 
 
 // when the value is submitted again it is neccessary to remove old one grid
 function removeAllChildNodes(parent) {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
+    // while (parent.firstChild) {
+    //     parent.removeChild(parent.firstChild);
+    // }
+    parent.innerHTML=""
 }
 
 
