@@ -21,6 +21,7 @@ form.addEventListener('submit', function(event) {
         let row = document.createElement('tr');
         for (let j = 0; j < width.value; j++) {
             let col = document.createElement('td');
+            col.className="TD";
             row.appendChild(col);
         }
         table.appendChild(row);
@@ -41,10 +42,27 @@ function removeAllChildNodes(parent) {
 
 // color filler part using target or event delegation 
 
-var table = document.querySelector('table');
+var table = document.querySelector('#pixelCanvas');
+var mouseDwn=false
 
-table.addEventListener('click', function (event) {
-    var color = document.querySelector('#colorPicker');
-    event.target.style.backgroundColor = color.value;
 
-});
+table.addEventListener("mousedown",(event)=>{
+    mouseDwn=true
+    console.log(mouseDwn)
+})
+
+table.addEventListener("mouseup",(event)=>{
+    mouseDwn=false
+    console.log(mouseDwn)
+})
+
+function fillMove(event){
+    
+    if(mouseDwn){
+        console.log("ok")
+        var color = document.querySelector('#colorPicker');
+        event.target.style.backgroundColor = color.value;
+    }
+}
+
+table.addEventListener("mousemove",fillMove)
